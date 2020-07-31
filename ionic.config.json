@@ -1,0 +1,7 @@
+{
+  "name": "RunFromOffice",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

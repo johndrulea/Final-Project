@@ -1,0 +1,38 @@
+ion-fab-button {
+  height: 70px;
+  width: 70px;
+}
+ 
+.cart-icon {
+  font-size: 50px;
+}
+ 
+.cart-length {
+  color: var(--ion-color-primary);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-weight: 600;
+  font-size: 1em;
+  min-width: 25px;
+  z-index: 10;
+}
+
+ion-content {
+  --ion-background-color: blue;
+}
+
+.card {
+  background-color: white;
+}
+
+img{
+  height: 10em;
+  width: fit-content;
+}
+
+.class{
+  flex: content;
+  flex-direction: row;
+  padding: 1em 1em 1em 1em;
+}

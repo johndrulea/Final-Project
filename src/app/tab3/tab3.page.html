@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Districts
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-fab vertical="top" horizontal="end" slot="fixed" *ngFor="let p of products">
+<ion-fab-button>
+  <div class="cartlength">{{currentFunds | currency: 'USD' }} </div> 
+  </ion-fab-button>
+  <ion-fab-button>
+  <ion-icon name="people"></ion-icon>
+  <div class="cartlength">{{ totalVotes(p) }} </div> 
+  </ion-fab-button>
+</ion-fab>
+
+
+<ion-content>
+
+  <ion-list >
+    <ion-card *ngIf=" totalVotes(p) >= '510'" class="card">
+    <ion-card-header>You Win!!</ion-card-header>
+    </ion-card>
+
+    <ion-card *ngFor="let p of products" class="card">
+      <ion-card-header>
+        <ion-card-title>{{ p.name }}</ion-card-title>
+         <ion-row class="ion-align-items-center">
+          <ion-col size="auto" class="ion-align-items-right">
+            <ion-label color="danger"> Approval: {{p.polls}} %
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto" class="ion-align-items-right">
+            <ion-label color="success"> Funds: {{ p.cash | currency:'USD' }}
+            </ion-label>
+          </ion-col>
+          <ion-col size="auto" class="ion-align-items-right">
+            <ion-label color="warning"> Total Voters: {{ p.voters }}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+  
+      </ion-card-header> 
+      <img src=" {{ p.pic }} "/>
+
+      <ion-card-content>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="auto" class="ion-align-items-right">
+            <ion-label color="secondary"> Media Ads
+            </ion-label>
+            <ion-button fill="clear" (click)="addPolls(p)">
+              <ion-icon name="megaphone"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="auto">
+            <ion-label color="secondary"> Fund Raising
+            </ion-label>
+            <ion-button fill="clear" (click)="addFunds(p)">
+              <ion-icon name="cash"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="auto">
+            <ion-label color="secondary"> Polling
+            </ion-label>
+            <ion-button fill="clear" (click)="addPolling(p)">
+              <ion-icon name="analytics"></ion-icon>
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
+</ion-content>
