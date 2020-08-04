@@ -1,72 +1,88 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Districts
-    </ion-title>
+  <ion-item class="card">
+    <ion-label position="stacked" >Select</ion-label>
+      <ion-select [(ngModel)]="current_funds" class="card" placeholder="Select One">
+        <ion-select-option *ngFor="let c of displayCharacter; let i = index" [value]="c.funds">
+          {{c.name}} {{c.party}}
+        </ion-select-option>
+      </ion-select>
+  </ion-item>
   </ion-toolbar>
+    <div class="ion-text-center">
+    <ion-icon name="people" color="secondary"></ion-icon>
+     {{ totalVotes(p) | number:'1.0-0'}}
+    <ion-icon name="cash" color="success"></ion-icon>
+    {{ actualFunds() | currency: 'USD' }}
+      <ion-icon name="people" color="danger"></ion-icon>
+    {{ opponentVoters }} 
+    </div>
 </ion-header>
-
-<ion-fab vertical="top" horizontal="end" slot="fixed" *ngFor="let p of products">
-<ion-fab-button>
-  <div class="cartlength">{{currentFunds | currency: 'USD' }} </div> 
-  </ion-fab-button>
-  <ion-fab-button>
-  <ion-icon name="people"></ion-icon>
-  <div class="cartlength">{{ totalVotes(p) }} </div> 
-  </ion-fab-button>
-</ion-fab>
-
 
 <ion-content>
 
   <ion-list >
-    <ion-card *ngIf=" totalVotes(p) >= '510'" class="card">
+    <ion-card *ngIf=" totalVotes(p) >= '600'" class="card">
     <ion-card-header>You Win!!</ion-card-header>
+    <img src='assets/Pictures/winning.jpg'>
+    </ion-card>
+
+    <ion-card *ngIf=" opponentVoters >= '600'" class="card">
+    <ion-card-header>You Lose!!</ion-card-header>
+    <img src='assets/Pictures/loser.jpg'>
     </ion-card>
 
     <ion-card *ngFor="let p of products" class="card">
       <ion-card-header>
         <ion-card-title>{{ p.name }}</ion-card-title>
-         <ion-row class="ion-align-items-center">
-          <ion-col size="auto" class="ion-align-items-right">
-            <ion-label color="danger"> Approval: {{p.polls}} %
+        <ion-row class="ion-align-items-center">
+          <ion-col size="small" class="ion-align-items-center">
+            <ion-label color="secondary" class="writing"> Approval: {{p.polls}} %
             </ion-label>
           </ion-col>
-          <ion-col size="auto" class="ion-align-items-right">
-            <ion-label color="success"> Funds: {{ p.cash | currency:'USD' }}
+          <ion-col size="small" class="ion-align-items-center">
+            <ion-label color="success" class="writing"> Funds: {{ p.cash | currency:'USD' }}
             </ion-label>
           </ion-col>
-          <ion-col size="auto" class="ion-align-items-right">
-            <ion-label color="warning"> Total Voters: {{ p.voters }}
+          <ion-col size="small" class="ion-align-items-center">
+            <ion-label color="warning" class="writing"> Total Voters: {{ p.voters }}
             </ion-label>
           </ion-col>
         </ion-row>
-  
       </ion-card-header> 
       <img src=" {{ p.pic }} "/>
 
       <ion-card-content>
         <ion-row class="ion-align-items-center">
           <ion-col size="auto" class="ion-align-items-right">
-            <ion-label color="secondary"> Media Ads
+            <ion-label color="secondary" class="writing"> Demagogue
             </ion-label>
-            <ion-button fill="clear" (click)="addPolls(p)">
+            <ion-button fill="clear" (click)="addPolls(p)" color="secondary">
               <ion-icon name="megaphone"></ion-icon>
             </ion-button>
           </ion-col>
 
-          <ion-col size="auto">
-            <ion-label color="secondary"> Fund Raising
+          <ion-col size="auto" class="ion-align-items-center">
+            <ion-label color="danger" class="writing"> Smear
             </ion-label>
-            <ion-button fill="clear" (click)="addFunds(p)">
+            <ion-button fill="clear" (click)="addSmear()" color="danger">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="auto" class="ion-align-items-center">
+            <ion-label color="success" class="writing"> Fund Raise
+            </ion-label>
+            <ion-button fill="clear" (click)="addFunds(p)" color="success">
               <ion-icon name="cash"></ion-icon>
             </ion-button>
           </ion-col>
 
-          <ion-col size="auto">
-            <ion-label color="secondary"> Polling
+          <ion-col size="auto" class="ion-align-items-center">
+            <ion-label color="warning"> Polling
             </ion-label>
-            <ion-button fill="clear" (click)="addPolling(p)">
+            <ion-button fill="clear" (click)="addPolling(p)" color="warning">
               <ion-icon name="analytics"></ion-icon>
             </ion-button>
           </ion-col>

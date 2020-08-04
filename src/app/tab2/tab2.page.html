@@ -1,52 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Profile
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
+    <ion-toolbar >
+  <ion-item class="card">
+    <ion-label position="stacked" >Select</ion-label>
+    <ion-select [(ngModel)]="current_funds" class="card">
+      <ion-select-option *ngFor="let c of displayCharacter; let i = index" [value]="c.funds">
+       {{c.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
   
 <ion-content>
-  <ion-item>
+  <ion-item class="card">
     <ion-label position="stacked" >Select</ion-label>
-    <ion-select [(ngModel)]="character.name" ng-change="showSelectedValue(mySelect)">
-      <ion-select-option *ngFor="let Character of displayCharacter" [value]="">
-        {{Character.name}}
+    <ion-select [(ngModel)]="current_funds" class="card">
+      <ion-select-option *ngFor="let c of displayCharacter; let i = index" [value]="c.funds">
+       {{c.name}}
       </ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
-      <ion-label position="stacked">To:</ion-label>
-      <ion-select [(ngModel)]="message.to">
-        <ion-select-option value="General">General</ion-select-option>
-        <ion-select-option *ngFor="let friend of myFriends" [value]="friend.name">
-          {{friend.name}}
-        </ion-select-option>
-
-      </ion-select>
-    </ion-item>
 
 
 
+  <ion-card> {{ current_funds }}</ion-card>
 
 
 
-
-
-
-  <ion-card> {{ mySelect }}</ion-card>
-
-
-
-  <ion-card *ngFor="let Character of displayCharacter">
+  <ion-card *ngFor="let Character of displayCharacter" class="card">
     <ion-card-header>
         <ion-card-title>{{Character.name}}</ion-card-title>
         <ion-card-title>{{Character.party}}</ion-card-title>

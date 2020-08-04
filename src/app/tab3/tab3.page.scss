@@ -6,7 +6,16 @@ ion-fab-button {
 .cart-icon {
   font-size: 50px;
 }
+
+.writing {
+  font-size: 12px;
+}
  
+.statusBar{
+  justify-content: center;
+
+}
+
 .cart-length {
   color: var(--ion-color-primary);
   position: absolute;
@@ -16,6 +25,10 @@ ion-fab-button {
   font-size: 1em;
   min-width: 25px;
   z-index: 10;
+}
+
+.cart-length2 {
+  color: red;
 }
 
 ion-content {

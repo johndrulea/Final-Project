@@ -14,10 +14,10 @@ export interface Product {
 })
 export class CartService {
   data: Product[] = [
-    {id: 0, name: 'Factory District', cash: 200, voters: 100, polls: 50, pic: 'assets/Pictures/Factory.png'},
-    {id: 1, name: 'Docks', cash: 300, voters: 200, polls: 50, pic: 'assets/Pictures/docks.jpg'},
-    {id: 2, name: 'Deacon Projects', cash: 100, voters: 500, polls: 50, pic: 'assets/Pictures/projects.jpg'},
-    {id: 3, name: 'Golden Heights', cash: 800, voters: 200, polls: 50, pic: 'assets/Pictures/luxury.jpg'}
+    {id: 0, name: 'Factory District', cash: 4000, voters: 200, polls: 50, pic: 'assets/Pictures/Factory.png'},
+    {id: 1, name: 'Docks', cash: 3000, voters: 200, polls: 50, pic: 'assets/Pictures/docks.jpg'},
+    {id: 2, name: 'Deacon Projects', cash: 1000, voters: 500, polls: 50, pic: 'assets/Pictures/projects.jpg'},
+    {id: 3, name: 'Golden Heights', cash: 8000, voters: 100, polls: 50, pic: 'assets/Pictures/luxury.jpg'}
   ];
  
   private cart = [];
@@ -46,15 +46,23 @@ export class CartService {
     for (let p of this.data) {
       if (p.id === product.id) {
         p.cash -= 100;
-        p.polls -= 2;
+        p.polls -= Math.floor(Math.random() * 2);
+      }
+    }
+  }
+
+  addDisapproval(product){
+    for (let p of this.data) {
+      if (p.id === product.id) {
+        p.polls -= Math.floor(Math.random() * 8);
       }
     }
   }
 
   addPolls(product){
     for (let p of this.data) {
-      if (p.id === product.id) {
-        p.polls += 1;
+      if (p.id === product.id && p.cash >= 0) {
+        p.polls += Math.floor(Math.random() * 3);
       }
     }
   }
@@ -62,8 +70,7 @@ export class CartService {
   addPolling(product){
     for (let p of this.data) {
       if (p.id === product.id) {
-        var totalVotes = p.polls * p.voters;
-        return totalVotes;
+        p.voters += Math.floor(Math.random() * 50);
       }
     }
   }
